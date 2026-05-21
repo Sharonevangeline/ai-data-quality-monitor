@@ -26,7 +26,7 @@ Data engineers routinely deal with dirty data — nulls, duplicates, outliers, a
 ## Screenshots
 
 ### App Homepage
-![App Homepage](screenshots/streamlit ss 1.png)
+![App Homepage](screenshots/streamlit_ss.png)
 
 ### Sample Results
 - [CSV Mode Results (txt)](screenshots/LLM_1.txt)
@@ -38,11 +38,10 @@ Data engineers routinely deal with dirty data — nulls, duplicates, outliers, a
 ![Dashboard](screenshots/first_page.pdf)
 
 ### Check Details
-![Check Details](screenshots/second page.pdf)
+![Check Details](screenshots/second_page.pdf)
 
 ### Data Preview
-![Data Preview](screenshots/third page.pdf)
-
+![Data Preview](screenshots/third_page.pdf)
 
 
 ## Project Structure
