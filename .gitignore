@@ -1,0 +1,8 @@
+.env
+temp_upload.csv
+results.json
+results_csv.json
+results_sqlite.json
+__pycache__/
+*.pyc
+*.db
