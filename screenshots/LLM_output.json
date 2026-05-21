@@ -1,0 +1,149 @@
+{
+  "run_timestamp": "2026-05-21 22:54:59",
+  "dataset_profile": {
+    "source": "temp_upload.csv",
+    "table": "N/A (CSV)",
+    "row_count": 12,
+    "column_count": 6,
+    "columns": [
+      "customer_id",
+      "age",
+      "revenue",
+      "country",
+      "signup_date",
+      "email"
+    ],
+    "dtypes": {
+      "customer_id": "float64",
+      "age": "float64",
+      "revenue": "int64",
+      "country": "str",
+      "signup_date": "str",
+      "email": "str"
+    },
+    "memory_usage_kb": 0.91,
+    "sample_rows": [
+      {
+        "customer_id": 1.0,
+        "age": 25.0,
+        "revenue": 1200,
+        "country": "IN",
+        "signup_date": "2023-01-01",
+        "email": "a@b.com"
+      },
+      {
+        "customer_id": 2.0,
+        "age": 34.0,
+        "revenue": 3400,
+        "country": "US",
+        "signup_date": "2023-02-15",
+        "email": "c@d.com"
+      },
+      {
+        "customer_id": 2.0,
+        "age": 34.0,
+        "revenue": 3400,
+        "country": "US",
+        "signup_date": "2023-02-15",
+        "email": "c@d.com"
+      }
+    ]
+  },
+  "overall_status": "FAIL",
+  "checks": [
+    {
+      "check": "null_values",
+      "status": "FAIL",
+      "total_nulls": 4,
+      "affected_columns": {
+        "customer_id": {
+          "null_count": 1,
+          "null_percent": 8.33
+        },
+        "age": {
+          "null_count": 1,
+          "null_percent": 8.33
+        },
+        "country": {
+          "null_count": 1,
+          "null_percent": 8.33
+        },
+        "email": {
+          "null_count": 1,
+          "null_percent": 8.33
+        }
+      }
+    },
+    {
+      "check": "duplicates",
+      "status": "FAIL",
+      "duplicate_row_count": 1,
+      "percent_of_data": 8.33,
+      "sample_duplicates": [
+        {
+          "customer_id": 2.0,
+          "age": 34.0,
+          "revenue": 3400,
+          "country": "US",
+          "signup_date": "2023-02-15",
+          "email": "c@d.com"
+        },
+        {
+          "customer_id": 2.0,
+          "age": 34.0,
+          "revenue": 3400,
+          "country": "US",
+          "signup_date": "2023-02-15",
+          "email": "c@d.com"
+        }
+      ]
+    },
+    {
+      "check": "outliers",
+      "status": "FAIL",
+      "affected_columns": {
+        "age": {
+          "outlier_count": 1,
+          "expected_range": "15.0 \u2013 51.0",
+          "outlier_values": [
+            999.0
+          ]
+        },
+        "revenue": {
+          "outlier_count": 2,
+          "expected_range": "-3025.0 \u2013 8175.0",
+          "outlier_values": [
+            8900,
+            150000
+          ]
+        }
+      }
+    },
+    {
+      "check": "schema_drift",
+      "status": "PASS",
+      "note": "No expected schema provided \u2014 current schema recorded as baseline.",
+      "current_schema": {
+        "customer_id": "float64",
+        "age": "float64",
+        "revenue": "int64",
+        "country": "str",
+        "signup_date": "str",
+        "email": "str"
+      },
+      "drifted_columns": {}
+    },
+    {
+      "check": "date_validity",
+      "status": "FAIL",
+      "affected_columns": {
+        "signup_date": {
+          "invalid_count": 1,
+          "sample_invalid_values": [
+            "invalid-date"
+          ]
+        }
+      }
+    }
+  ]
+}

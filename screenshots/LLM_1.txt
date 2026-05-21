@@ -1,0 +1,36 @@
+## Executive Summary
+The overall status of the dataset is FAIL, primarily due to the presence of null values and duplicates. The most critical issue is the detection of 4 null values across key columns, which could significantly impact data integrity.
+
+## Issues Found
+- **Null Values**: 
+  - Affected columns: `customer_id`, `age`, `country`, `email`
+  - There are 4 null values in total, with 1 null in each of the columns mentioned, representing 8.33% of the dataset.
+  - This means that important information is missing, which can lead to incomplete analyses and misinformed decisions.
+
+- **Duplicates**: 
+  - Affected rows: 1 duplicate row found.
+  - This duplicate represents 8.33% of the dataset and contains identical information for `customer_id`, `age`, `revenue`, `country`, `signup_date`, and `email`.
+  - Having duplicate entries can skew results and lead to inaccurate reporting.
+
+- **Outliers**: 
+  - Affected columns: `age` and `revenue`
+  - There is 1 outlier in `age` (999.0) and 2 outliers in `revenue` (8900 and 150000).
+  - These values are far outside the expected ranges, which can distort analyses and lead to erroneous conclusions.
+
+- **Date Validity**: 
+  - Affected column: `signup_date`
+  - There is 1 invalid date entry ("invalid-date").
+  - This means that the date information is unreliable, which can affect time-based analyses and reporting.
+
+## Business Impact
+These data quality issues can lead to inaccurate reporting and analysis, potentially resulting in misguided business decisions. For instance, missing customer information could affect targeted marketing efforts, while duplicates might inflate customer counts, leading to misallocation of resources.
+
+## Recommended Actions
+1. **customer_id**: Investigate and fill in the missing value to ensure all customer records are complete.
+2. **age**: Address the null value by either imputing a reasonable estimate or removing the affected record.
+3. **country**: Fill in the missing country information to maintain data completeness.
+4. **email**: Ensure the missing email is provided to enhance customer communication efforts.
+5. **Duplicates**: Remove the duplicate entry to ensure accurate customer counts.
+6. **age**: Review the outlier value (999.0) and correct it to a valid age within the expected range.
+7. **revenue**: Investigate the outlier values (8900 and 150000) and adjust them to fit within the expected revenue range.
+8. **signup_date**: Correct the invalid date entry to a valid format to ensure reliable time-based analyses.
