@@ -117,6 +117,6 @@ def _fallback_report(results: dict, error: str = None) -> str:
     ]
 
     if error:
-        lines += ["", f"> ⚠️ API error: `{error}`"]
+        lines += ["", f"> API error: `{error}`"]
 
     return "\n".join(lines)
