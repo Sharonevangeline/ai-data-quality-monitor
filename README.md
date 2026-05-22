@@ -35,13 +35,13 @@ Data engineers routinely deal with dirty data — nulls, duplicates, outliers, a
 - [CSV Mode Results (json)](screenshots/LLM_output_2.json)
 
 ### Dashboard
-![Dashboard](screenshots/first_page.pdf)
+![Dashboard](screenshots/Dashboard_page.pdf)
 
 ### Check Details
-![Check Details](screenshots/second_page.pdf)
+![Check Details](screenshots/check_details_page.pdf)
 
 ### Data Preview
-![Data Preview](screenshots/third_page.pdf)
+![Data Preview](screenshots/data_preview_page.pdf)
 
 
 ## Project Structure
