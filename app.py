@@ -12,11 +12,11 @@ from llm_report import generate_report
 # ─────────────────────────────────────────────
 st.set_page_config(
     page_title="AI Data Quality Monitor",
-    page_icon="🔍",
+    page_icon=None,
     layout="wide",
 )
 
-st.title("🔍 AI-Powered Data Quality Monitor")
+st.title("AI-Powered Data Quality Monitor")
 st.caption("Upload a CSV or connect to a SQLite database — automated checks + AI report generation")
 
 # ─────────────────────────────────────────────
@@ -29,12 +29,12 @@ ready_to_run = False
 st.sidebar.header("Data Source")
 source_type = st.sidebar.radio(
     "Select source type",
-    ["📄 CSV File", "🗄️ SQLite Database"],
+    ["CSV File", "SQLite Database"],
     help="Mode 1: CSV upload | Mode 2: SQLite database"
 )
 
 # ── Mode 1: CSV ──────────────────────────
-if source_type == "📄 CSV File":
+if source_type == "CSV File":
     st.sidebar.markdown("**Upload your CSV file:**")
     uploaded_file = st.sidebar.file_uploader(
         "Choose a CSV file",
@@ -46,11 +46,11 @@ if source_type == "📄 CSV File":
         with open(save_path, "wb") as f:
             f.write(uploaded_file.read())
         source_path = save_path
-        st.sidebar.success(f"✅ Ready: {uploaded_file.name}")
+        st.sidebar.success(f"Ready: {uploaded_file.name}")
         ready_to_run = True
 
 # ── Mode 2: SQLite ───────────────────────
-elif source_type == "🗄️ SQLite Database":
+elif source_type == "SQLite Database":
     st.sidebar.markdown("**Database file path:**")
     db_input = st.sidebar.text_input(
         "Database path",
@@ -63,7 +63,7 @@ elif source_type == "🗄️ SQLite Database":
             table_name = st.sidebar.selectbox("Select table", tables)
             source_path = db_input
             ready_to_run = True
-            st.sidebar.success(f"✅ Connected: {len(tables)} table(s) found")
+            st.sidebar.success(f"Connected: {len(tables)} table(s) found")
         else:
             st.sidebar.error("No tables found in this database.")
     elif db_input:
@@ -91,7 +91,7 @@ if use_schema:
 
 st.sidebar.divider()
 run_btn = st.sidebar.button(
-    "▶ Run Quality Checks",
+    "Run Quality Checks",
     disabled=not ready_to_run,
     width="stretch",
     type="primary",
@@ -102,7 +102,7 @@ run_btn = st.sidebar.button(
 # ─────────────────────────────────────────────
 
 if not ready_to_run:
-    st.info("👈 Select a data source in the sidebar to get started.")
+    st.info("Select a data source in the sidebar to get started.")
     with st.expander("Quick start — try sample files"):
         st.markdown("""
         **Mode 1 (CSV):** Upload the `sample_data.csv` file included in this repo.
@@ -129,7 +129,7 @@ if run_btn:
 
 # Retrieve from session state so results persist across reruns
 if "results" not in st.session_state:
-    st.info("Click **▶ Run Quality Checks** in the sidebar to begin.")
+    st.info("Click **Run Quality Checks** in the sidebar to begin.")
     st.stop()
 
 results = st.session_state["results"]
@@ -145,7 +145,7 @@ m1, m2, m3, m4, m5 = st.columns(5)
 m1.metric("Rows", f"{profile['row_count']:,}")
 m2.metric("Columns", profile["column_count"])
 m3.metric("Checks Run", len(checks))
-m4.metric("Source", "CSV" if source_type == "📄 CSV File" else "SQLite")
+m4.metric("Source", "CSV" if source_type == "CSV File" else "SQLite")
 
 status_map = {"PASS": "🟢 PASS", "WARN": "🟡 WARN", "FAIL": "🔴 FAIL"}
 m5.metric("Overall Status", status_map.get(overall, overall))
@@ -155,7 +155,7 @@ st.divider()
 # ─────────────────────────────────────────────
 # TABS
 # ─────────────────────────────────────────────
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Dashboard", "📋 Check Details", "🗂️ Data Preview", "🤖 AI Report"])
+tab1, tab2, tab3, tab4 = st.tabs(["Dashboard", "Check Details", "Data Preview", "AI Report"])
 
 # ── TAB 1: Dashboard ─────────────────────────
 with tab1:
@@ -204,7 +204,7 @@ with tab1:
             fig_null.update_layout(height=300, margin=dict(t=40, b=10, l=10, r=10))
             st.plotly_chart(fig_null, use_container_width=True)
         else:
-            st.success("✅ No null values found.")
+            st.success("No null values found.")
 
     # Numeric distributions
     numeric_cols = df.select_dtypes(include="number").columns.tolist()
@@ -323,7 +323,7 @@ with tab4:
         dl_col1, dl_col2 = st.columns(2)
         with dl_col1:
             st.download_button(
-                label="⬇️ Download Report (.txt)",
+                label="Download Report (.txt)",
                 data=st.session_state["report"],
                 file_name="quality_report.txt",
                 mime="text/plain",
@@ -332,7 +332,7 @@ with tab4:
         with dl_col2:
             import json as _json
             st.download_button(
-                label="⬇️ Download Raw Results (.json)",
+                label="Download Raw Results (.json)",
                 data=_json.dumps(results, indent=2, default=str),
                 file_name="results.json",
                 mime="application/json",
